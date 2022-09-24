@@ -1,0 +1,202 @@
+.wrapper{
+    background-color: white;
+    width: 600px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    
+}
+
+
+.headingWrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heading h2{
+    font-size: 30px;
+}
+.heading span{
+    color: dodgerblue;
+    font-weight: 600;
+}
+.heading span:hover{
+    color: rgb(22, 102, 183);
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.headingWrapper input{
+    background-color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    outline: none;
+}
+.headingWrapper input::placeholder{
+    /* border: 1px solid gray; */
+    color: rgb(173, 173, 173);
+}
+
+
+
+.none{
+    display: grid;
+    place-items: center;
+    height: 25vh;
+}
+.nonetext{
+    font-size: 25px;
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    position: relative;
+}
+.contactWrapper{
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.contactWrapper:last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.image{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: rgba(30, 143, 255, 0.222);
+}
+.contactInfo{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+    align-items: center;
+}
+.contactInfo h3{
+    font-size: 18px;
+}
+.contactInfo p{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(152, 152, 152);
+}
+
+.list{
+    font-size: 26px;
+}
+.list:hover{
+    cursor: pointer;
+}
+.card{
+    display: none;
+}
+.showCard{
+    position: absolute;
+    right: -30px ;
+    top: 40px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 20px rgb(229, 229, 229);
+    display: block;
+}
+.showCard p{
+    border-bottom: 1px solid rgb(183, 183, 183);
+    padding-bottom: 4px;
+}
+.showCard p:last-child{
+    padding-top: 5px;
+    border-bottom: none;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    display: grid;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.521);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur( 2px );
+}
+.close{
+    text-align: right;
+    color: red;
+    font-size: 25px;
+}
+.close:hover{
+    color: maroon;
+    cursor: pointer;
+    transition: 200ms;
+}
+.formWrapper{
+    width: 400px;
+    background-color: white;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.headWrapper h1{
+    text-align: center;
+    font-size: 30px;
+}
+form .inputWrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+form label{
+    font-size: 15px;
+}
+form input{
+    padding: 7px 10px;
+    font-size: 16px;
+    border: 1px solid rgb(210, 210, 210);
+    outline: none;
+    border-radius: 5px;
+    background-color: rgb(246, 246, 246);
+}
+form input[type= 'button']{
+    background-color: rgb(0, 133, 174);
+    margin-top: 10px;
+    color: white;
+    font-size: 15px;
+}
+form input[type= 'button']:hover{
+    background-color: rgb(0, 133, 174);
+    cursor: pointer;
+    background-color: rgb(0, 101, 174);
+    transition: 500ms;
+}
+.error{
+    font-size: 14px;
+    font-weight: 500;
+    color: red;
+}
