@@ -40,6 +40,9 @@ const Phonebook = () => {
         let newContact = [...contact]
         setNameError('')
         setNumError('')
+        
+        
+        
 
         if(!fullname){
             setNameError("Please Input Name")
@@ -74,13 +77,13 @@ const Phonebook = () => {
                     }
                     
                 })
-            }
-            if(contact.length === []){
+            }else{
                 newContact = [...contact, {key, fullname, number}]
+                console.log(newContact)
                 setContact(newContact)
                 setAddform(false)
-                return
             }
+           
             
         }
         
