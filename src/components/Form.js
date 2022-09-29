@@ -1,6 +1,6 @@
 // import Style from "Form.module.css"
 
-const Form = () => {
+const form = () => {
     return <>
         <p>I am a form</p>
     </>
@@ -8,4 +8,6 @@ const Form = () => {
 
 
 
-// export default Form
+export{
+    form
+}

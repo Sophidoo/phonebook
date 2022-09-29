@@ -12,6 +12,11 @@ const Phonebook = () => {
     const[toggling, setToggling] = useState()
     const [contact, setContact] = useState([])
     const[selectedNum, setSelectedNum] = useState()
+    const[editname, setEditname] = useState()
+    const[editnum, setEditnum] = useState()
+    const[displayedit, setDisplayedit] = useState(false)
+    const[key, setKey] = useState(0)
+    const[editkey, setEditkey] = useState()
 
     const randomColors = ["#ff000030", "#ffae0050" , "#00ff6650", "#00d0ff50", "#1900ff50"]
     // const storage = [
@@ -19,16 +24,20 @@ const Phonebook = () => {
     //     {name: "joe", number:"234"}
     // ]
 
+
+    //on page load
     useEffect(() => {
 
         setContact(JSON.parse(localStorage.getItem('phonebook')) || [])
     }, [])
 
+
+    //on click of submit button in the add form
     let submit = () => {
         
         
         // spread operator
-        const newContact = [...contact, {fullname, number}]
+        let newContact = [...contact]
         setNameError('')
         setNumError('')
 
@@ -38,36 +47,113 @@ const Phonebook = () => {
         }else if(!number){
             setNumError("Please Input a number")
             return  
-        }else if(number.length <=  10){
+        }else if(number.length <=  10 || number.length > 11){
             setNumError("Please Input a valid phone number")
             return     
         }else{
-            setNameError('')
-            setNumError('')
-            setContact(newContact)
-            setAddform(false)
+            if(contact.length > 0){
+                console.log(contact.slice(contact.length - 1).length)
+                contact.slice(contact.length - 1)?.map((element) => {
+                    if(element.fullname === fullname){
+                        console.log(fullname)
+                        console.log(element.fullname)
+                        setNameError("Name already exists")
+                        return
+                    }else if(element.number === number){
+                        setNumError("Number already exists")
+                        return
+                    }
+                    else{
+                        console.log(element.fullname)
+                        setNameError('')
+                        setNumError('')
+                        newContact = [...contact, {key, fullname, number}]
+                        setContact(newContact)
+                        setAddform(false)
+                        return
+                    }
+                    
+                })
+            }
+            if(contact.length === []){
+                newContact = [...contact, {key, fullname, number}]
+                setContact(newContact)
+                setAddform(false)
+                return
+            }
+            
         }
         
+        
+
         localStorage.setItem("phonebook", JSON.stringify(newContact))
         
     }
     // console.log(number.length)
 
-    
-    
-    let displayForm = () => {
-        console.log(fullname)
+
+    //on click of the edit button
+    let edit = (num) => {
+        setDisplayedit(true)
+        contact?.map((element) => {
+            if(element.key === num){
+                setEditname(element.fullname)
+                setEditnum(element.number)
+                setEditkey(element.key)
+            }
+        })
+    }
+
+    //on submit of the edit form
+    let submitedit = () => {
+        setDisplayedit(false)
+        setToggling(false)
         
+        contact?.map((element)  => {
+            if(parseInt(element.key) === parseInt(editkey)){
+                
+                element.fullname = editname
+                element.number = editnum
+            }
+        })
+        
+        let newContact = [...contact]         
+        setContact(newContact)
+        
+        localStorage.setItem("phonebook", JSON.stringify(newContact))
+    }
+
+    //on click of the delete button
+    let deleting = (num) => {
+            contact?.map((element) => {
+                if(element.key === num){
+                    
+                }
+            })
+    }
+    
+    //on click of add new
+    let displayForm = () => {
+        // console.log(fullname)
+        setNameError('')
+        setNumError('')
+        setKey(key + 1)
         setFullname('')
         setNumber('')
         
         setAddform(true)
     }
 
+
+    //on clickof x
     let close = () => {
         setAddform(false)
+        setDisplayedit(false)
+        setToggling(false)
     }
 
+
+    //on click of the more icon
     let toggle = (num) => {
 
         setSelectedNum(num)
@@ -101,17 +187,17 @@ const Phonebook = () => {
                     <div className = {Style.contact}>
                         <div className = {Style.contactWrapper}>
                             <div className = {Style.contactInfo}>
-                            <div className = {Style.image} style={{background: randomColors[Math.floor(Math.random() * contact.length)]}}></div>
+                            <div className = {Style.image} id = {key} style={{background: randomColors[Math.floor(Math.random() * contact.length)]}}></div>
                                 <div className={Style.contactName}>
                                     <h3>{element.fullname}</h3>
                                     <p>{element.number}</p>
                                 </div>
                             </div>
-                            <span className={`material-symbols-outlined ${Style.list}`} onClick={() => toggle(element.number)}>more_vert</span>
+                            <span className={`material-symbols-outlined ${Style.list}`} onClick={() => toggle(element.key)}>more_vert</span>
                         </div>
-                        <div className={toggling && selectedNum === element.number? Style.showCard : Style.card}>
-                            <p>Edit</p>
-                            <p>Delete</p>
+                        <div className={toggling && selectedNum === element.key? Style.showCard : Style.card}>
+                            <p onClick={() => edit(element.key)}>Edit</p>
+                            <p onClick={() => deleting(element.key)}>Delete</p>
                         </div>
                     </div>
                 ))
@@ -147,6 +233,36 @@ const Phonebook = () => {
             </div>
 
         </div>
+        <div className={displayedit? Style.show : Style.hide}>
+            <div className = {Style.formWrapper}>
+
+                <div className={Style.headWrapper}>
+                    <p className={Style.close} onClick = {() => close()}>x</p>
+                    <h1>Edit Contact</h1>
+                </div>
+
+                <form action="">
+                    <div className={Style.inputWrapper}>
+                        <label htmlFor="fnm">Full Name:</label>
+                        <input type="text" value={editname} name="fnm" onChange = {(e) => setEditname(e.target.value)}/>
+                        <p className={Style.error}>{nameError}</p>
+                    </div>
+
+                    <div className={Style.inputWrapper}>
+                        <label htmlFor="num">Phone Number:</label>
+                        <input type="text" value={editnum} name="fnm" onChange = {(e) => setEditnum(e.target.value)}/>
+                        <p className={Style.error}>{numerror}</p>
+                    </div>
+                    <input type="button" onClick = {() => submitedit()} value="Submit"/>
+                </form>
+
+            </div>
+        </div>
+        
+
+        
+
+        
 
     </>
 
