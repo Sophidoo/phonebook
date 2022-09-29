@@ -52,16 +52,16 @@ const Phonebook = () => {
             return     
         }else{
             if(contact.length > 0){
-                console.log(contact.slice(contact.length - 1).length)
+                // console.log(contact.slice(contact.length - 1).length)
                 contact.slice(contact.length - 1)?.map((element) => {
                     if(element.fullname === fullname){
                         console.log(fullname)
                         console.log(element.fullname)
                         setNameError("Name already exists")
-                        return
+                        return null
                     }else if(element.number === number){
                         setNumError("Number already exists")
-                        return
+                        return null
                     }
                     else{
                         console.log(element.fullname)
@@ -70,7 +70,7 @@ const Phonebook = () => {
                         newContact = [...contact, {key, fullname, number}]
                         setContact(newContact)
                         setAddform(false)
-                        return
+                        return null
                     }
                     
                 })
@@ -101,6 +101,7 @@ const Phonebook = () => {
                 setEditnum(element.number)
                 setEditkey(element.key)
             }
+            return null
         })
     }
 
@@ -112,9 +113,10 @@ const Phonebook = () => {
         contact?.map((element)  => {
             if(parseInt(element.key) === parseInt(editkey)){
                 
-                element.fullname = editname
+               element.fullname = editname
                 element.number = editnum
             }
+            return null
         })
         
         let newContact = [...contact]         
@@ -129,6 +131,7 @@ const Phonebook = () => {
                 if(element.key === num){
                     
                 }
+                return null
             })
     }
     
@@ -184,7 +187,7 @@ const Phonebook = () => {
             {
                 contact.length > 0 &&
                 contact?.map((element) => (
-                    <div className = {Style.contact}>
+                     <div className = {Style.contact}>
                         <div className = {Style.contactWrapper}>
                             <div className = {Style.contactInfo}>
                             <div className = {Style.image} id = {key} style={{background: randomColors[Math.floor(Math.random() * contact.length)]}}></div>
