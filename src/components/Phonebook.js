@@ -130,13 +130,23 @@ const Phonebook = () => {
 
     //on click of the delete button
     let deleting = (num) => {
-            contact?.map((element) => {
-                if(element.key === num){
-                    
-                }
-                return null
-            })
+        
+        let newarr = contact.filter((el) => el.key !== num)
+        console.log(newarr)
+        const newContact = [...newarr]
+        setContact(newContact)
+        localStorage.setItem("phonebook", JSON.stringify(newContact))
+            
     }
+    // let deletekey = (num) => {
+    //     contact?.map((element) => {
+    //         return element.key !== num
+    //         // if(element.key !== num){
+    //         //     console.log(contact)
+    //         //     return contact
+    //         // }
+    //     })
+    // }
     
     //on click of add new
     let displayForm = () => {
