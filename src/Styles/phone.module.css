@@ -311,8 +311,16 @@ form input[type= 'button']:hover{
     }
 }
 @media(max-width: 400px){
+    body{
+        background-color: white;
+    }
+    .wrapper{
+        padding: 40px 10px;
+        width: 100%;
+        margin-top: 0px;
+    }
     .formWrapper{
-        width: 90%;
+        width: 100%;
         padding: 10px;
     }
 }
