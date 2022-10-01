@@ -16,6 +16,7 @@ const Phonebook = () => {
   const [displayedit, setDisplayedit] = useState(false);
   const [key, setKey] = useState(0);
   const [editkey, setEditkey] = useState();
+  const[filterarr, setFilterarr] = useState([])
   // const[search, setSearch] = useState()x
 
 
@@ -155,17 +156,12 @@ const Phonebook = () => {
     setToggling(false);
   };
 
-  let startSearch = (value) => {
-    // contact?.map((element) => {
-    //     setSearch(value)
-    //     console.log(search)
-    //     // setContact(filtered)
-
-    //     let elements = element.fullname.startsWith(value)
-    // })
-    // const filtered = contact.filter((element) => element.fullname.startsWith(value))
-    console.log(value);
-  };
+  const startSearch = (value) => {
+    let filtered = contact.filter((element) => element.fullname.startsWith(value))
+    
+    setFilterarr(filtered)
+    console.log(filterarr)
+  }
 
   //on click of the more icon
   let toggle = (num) => {
@@ -189,7 +185,7 @@ const Phonebook = () => {
           <input
             type="search"
             placeholder="Search"
-            onChange={(e) => startSearch(e.target.value)}
+            onChange = {(e) => startSearch(e.target.value)}
           />
         </div>
         {contact.length <= 0 && (
@@ -197,8 +193,50 @@ const Phonebook = () => {
             <p className={Style.nonetext}>No Contacts Yet😟</p>
           </div>
         )}
+        {
+          filterarr.length <= 0 && (
+            contact?.map((element) => (
+            <div className={Style.contact}>
+              <div className={Style.contactWrapper}>
+                <div className={Style.contactInfo}>
+                  <div
+                    className={Style.image}
+                    id={key}
+                    style={{
+                      background:
+                        randomColors[
+                          Math.floor(Math.random() * contact.length)
+                        ],
+                    }}
+                  ></div>
+                  <div className={Style.contactName}>
+                    <h3>{element.fullname}</h3>
+                    <p>{element.number}</p>
+                  </div>
+                </div>
+                <span
+                  className={`material-symbols-outlined ${Style.list}`}
+                  onClick={() => toggle(element.key)}
+                >
+                  more_vert
+                </span>
+              </div>
+              <div
+                className={
+                  toggling && selectedNum === element.key
+                    ? Style.showCard
+                    : Style.card
+                }
+              >
+                <p onClick={() => edit(element.key)}>Edit</p>
+                <p onClick={() => deleting(element.key)}>Delete</p>
+              </div>
+            </div>
+          ))
+          )
+        }
         {contact.length > 0 &&
-          contact?.map((element) => (
+          filterarr?.map((element) => (
             <div className={Style.contact}>
               <div className={Style.contactWrapper}>
                 <div className={Style.contactInfo}>
