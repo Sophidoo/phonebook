@@ -248,11 +248,43 @@ form input[type= 'button']:hover{
     .list{
         font-size: 24px;
     }
+    .formWrapper{
+        width: 45%;
+    }
+    form label{
+        font-size: 14px;
+    }
+    form input{
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    form input[type= 'button']{
+        font-size: 14px;
+    }
+    .error{
+        font-size: 13px;
+    }
+    .close{
+        font-size: 22px;
+    }
+    .headWrapper h1{
+        font-size: 25px;
+    }
 }
 @media(max-width: 750px){
     .wrapper{
         padding: 40px 30px;
         width: 70%;
+    }
+    .formWrapper{
+        width: 60%;
+    }
+    .showCard{
+        padding: 8px 15px;
+        right: -20px;
+    }
+    .showCard p{
+        font-size: 15px;
     }
 }
 @media(max-width: 500px){
@@ -260,6 +292,13 @@ form input[type= 'button']:hover{
         padding: 40px 20px;
         margin-top: 20px;
         width: 90%;
+    }
+    .formWrapper{
+        width: 70%;
+        padding: 20px;
+    }
+    .headWrapper h1{
+        font-size: 22px;
     }
     .headingWrapper input{
         padding: 7px 15px;
@@ -269,5 +308,11 @@ form input[type= 'button']:hover{
     }
     .heading span{
         font-size: 14px;
+    }
+}
+@media(max-width: 400px){
+    .formWrapper{
+        width: 90%;
+        padding: 10px;
     }
 }
