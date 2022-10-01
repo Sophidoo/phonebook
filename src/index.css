@@ -8,16 +8,11 @@
 }
 body {
   margin: 0;
-  display: flex;
-  justify-content: center ;
+  justify-content: center;
   background-color: rgb(226, 226, 226);
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 

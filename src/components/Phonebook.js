@@ -11,12 +11,14 @@ const Phonebook = () => {
     const[numerror, setNumError] = useState()
     const[toggling, setToggling] = useState()
     const [contact, setContact] = useState([])
+    // const [newcontact, setNewContact] = useState([])
     const[selectedNum, setSelectedNum] = useState()
     const[editname, setEditname] = useState()
     const[editnum, setEditnum] = useState()
     const[displayedit, setDisplayedit] = useState(false)
     const[key, setKey] = useState(0)
     const[editkey, setEditkey] = useState()
+    // const[search, setSearch] = useState()
 
     const randomColors = ["#ff000030", "#ffae0050" , "#00ff6650", "#00d0ff50", "#1900ff50"]
     // const storage = [
@@ -169,6 +171,21 @@ const Phonebook = () => {
     }
 
 
+    let startSearch = (value) =>{
+        // contact?.map((element) => {
+        //     setSearch(value)
+        //     console.log(search)
+        //     // setContact(filtered)
+            
+        //     let elements = element.fullname.startsWith(value)
+        // })
+        // const filtered = contact.filter((element) => element.fullname.startsWith(value))
+        console.log(value)
+        
+
+    }
+    
+
     //on click of the more icon
     let toggle = (num) => {
 
@@ -189,7 +206,7 @@ const Phonebook = () => {
                     <span onClick = {() => displayForm()}>+ Add New</span>
                 </div>
 
-                <input type = 'search' placeholder = 'Search'/>
+                <input type = 'search' placeholder = 'Search' onChange={(e) => startSearch(e.target.value)}/>
             </div>
             {
                 contact.length <= 0 &&
@@ -200,7 +217,7 @@ const Phonebook = () => {
             {
                 contact.length > 0 &&
                 contact?.map((element) => (
-                     <div className = {Style.contact}>
+                    <div className = {Style.contact}>
                         <div className = {Style.contactWrapper}>
                             <div className = {Style.contactInfo}>
                             <div className = {Style.image} id = {key} style={{background: randomColors[Math.floor(Math.random() * contact.length)]}}></div>
@@ -215,7 +232,7 @@ const Phonebook = () => {
                             <p onClick={() => edit(element.key)}>Edit</p>
                             <p onClick={() => deleting(element.key)}>Delete</p>
                         </div>
-                    </div>
+                    </div> 
                 ))
             }
             

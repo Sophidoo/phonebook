@@ -1,6 +1,7 @@
 .wrapper{
     background-color: white;
-    width: 600px;
+    width: 40%;
+    margin: auto auto;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -123,6 +124,14 @@
     padding-top: 5px;
     border-bottom: none;
 }
+.showCard p:hover{
+    cursor: pointer;
+    color: rgb(0, 152, 43);
+}
+.showCard p:last-child:hover{
+    cursor: pointer;
+    color: rgb(152, 5, 0);
+}
 
 .hide{
     display: none;
@@ -203,4 +212,62 @@ form input[type= 'button']:hover{
     font-size: 14px;
     font-weight: 500;
     color: red;
+}
+
+
+
+@media(max-width: 1300px){
+    
+    .wrapper{
+        width: 50%;
+    }
+}
+@media(max-width: 900px){
+    .wrapper{
+        width: 60%;
+    }
+    .heading h2{
+        font-size: 27px;
+    }
+    .heading span{
+        font-size: 15px;
+    }
+    .headingWrapper input{
+        font-size: 15px;
+    }
+    .image{
+        width: 40px;
+        height: 40px;
+    }
+    .contactInfo h3{
+        font-size: 16px;
+    }
+    .contactInfo p{
+        font-size: 13px;
+    }
+    .list{
+        font-size: 24px;
+    }
+}
+@media(max-width: 750px){
+    .wrapper{
+        padding: 40px 30px;
+        width: 70%;
+    }
+}
+@media(max-width: 500px){
+    .wrapper{
+        padding: 40px 20px;
+        margin-top: 20px;
+        width: 90%;
+    }
+    .headingWrapper input{
+        padding: 7px 15px;
+    }
+    .heading h2{
+        font-size: 25px;
+    }
+    .heading span{
+        font-size: 14px;
+    }
 }
